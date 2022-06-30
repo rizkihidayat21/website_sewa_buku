@@ -94,7 +94,7 @@ class DataPeminjamController extends Controller
             $data_peminjam->foto = $nama_file;
             $data_peminjam->update();
             // find user
-            $user_id = DataPeminjam::where('id',$id)->pluck(user_id);
+            $user_id = DataPeminjam::where('id',$id)->pluck('user_id');
             $user = User::where('id',$user_id);
             $user->update(['name'=>$request->nama_peminjam]);
         } else {
@@ -106,7 +106,7 @@ class DataPeminjamController extends Controller
             $data_peminjam->pekerjaan = $request->pekerjaan;
             $data_peminjam->update();
             // find user
-            $user_id = DataPeminjam::where('id',$id)->pluck(user_id);
+            $user_id = DataPeminjam::where('id',$id)->pluck('user_id');
             $user = User::where('id',$user_id);
             $user->update(['name'=>$request->nama_peminjam]);
         }
@@ -133,7 +133,7 @@ class DataPeminjamController extends Controller
     }
 
     public function destroy($id) {
-        $user_id = DataPeminjam::where('id',$id)->pluck(user_id);
+        $user_id = DataPeminjam::where('id',$id)->pluck('user_id');
         $user = User::where('id',$user_id);
         $user->delete();
         

@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <?php $i=0;?>
+            <?php $i=1;?>
             @foreach($user_list as $user)
                 <tr>
                     <td>{{ $i++ }}</td>

@@ -67,10 +67,16 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
-       
+        $pass_lama = $user->password;
+        
+        if ($pass_lama == $request->password) {
+            //do nothing
+        } else {
+            $user->password = Hash::make($request->password);
+        }
+
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password = Hash::make($request->id_jenis_kelamin);
         $user->level = $request->level;
         $user->update();
 

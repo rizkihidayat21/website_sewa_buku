@@ -7,6 +7,7 @@
             <div class="mb-3">
                 <label for="kode_peminjam" class="form-label" >Kode Peminjam</label>
                 <input type="text" class="form-control" id="kode_peminjam" name="kode_peminjam" value="{{ $peminjam->kode_peminjam }}">
+                <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $peminjam->user_id }}">
             </div>
             <div class="mb-3">
                 <label for="nama_peminjam" class="form-label" name="nama_peminjam">Nama Peminjam</label>
