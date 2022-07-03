@@ -12,7 +12,8 @@ use Storage;
 
 class DataPeminjamController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     
@@ -94,8 +95,8 @@ class DataPeminjamController extends Controller
             $data_peminjam->foto = $nama_file;
             $data_peminjam->update();
             // find user
-            $user_id = DataPeminjam::where('id',$id)->pluck('user_id');
-            $user = User::where('id',$user_id);
+            $user_id = DataPeminjam::where('id', $id)->pluck('user_id');
+            $user = User::where('id', $user_id);
             $user->update(['name'=>$request->nama_peminjam]);
         } else {
             $data_peminjam->kode_peminjam = $request->kode_peminjam;
@@ -106,8 +107,8 @@ class DataPeminjamController extends Controller
             $data_peminjam->pekerjaan = $request->pekerjaan;
             $data_peminjam->update();
             // find user
-            $user_id = DataPeminjam::where('id',$id)->pluck('user_id');
-            $user = User::where('id',$user_id);
+            $user_id = DataPeminjam::where('id', $id)->pluck('user_id');
+            $user = User::where('id', $user_id);
             $user->update(['name'=>$request->nama_peminjam]);
         }
 
@@ -132,9 +133,10 @@ class DataPeminjamController extends Controller
         return redirect('data_peminjam');
     }
 
-    public function destroy($id) {
-        $user_id = DataPeminjam::where('id',$id)->pluck('user_id');
-        $user = User::where('id',$user_id);
+    public function destroy($id)
+    {
+        $user_id = DataPeminjam::where('id', $id)->pluck('user_id');
+        $user = User::where('id', $user_id);
         $user->delete();
         
         $data_peminjam = DataPeminjam::find($id);
@@ -144,60 +146,70 @@ class DataPeminjamController extends Controller
         return redirect('data_peminjam');
     }
 
-    public function search(Request $request) {
+    public function search(Request $request)
+    {
         $batas = 5;
         $cari = $request->kata;
         $data_peminjam = DataPeminjam::where("nama_peminjam", "like", "%".$cari."%")->paginate($batas);
         $no = $batas * ($data_peminjam->currentPage() - 1);
-        return view('data_peminjam.search', compact('data_peminjam', 'no', 'cari'));    
+        return view('data_peminjam.search', compact('data_peminjam', 'no', 'cari'));
     }
 
-    public function CobaCollection() {
+    public function CobaCollection()
+    {
         $daftar = ['Chairul', 'Anaam', 'Maulidin'];
-        $collection = collect($daftar)->map(function($nama) {
+        $collection = collect($daftar)->map(function ($nama) {
             return ucwords($nama);
         });
 
         return $collection;
     }
 
-    public function collection_first() {
+    public function collection_first()
+    {
         $collection = DataPeminjam::all()->first();
         return $collection;
     }
 
-    public function collection_last() {
+    public function collection_last()
+    {
         $collection = DataPeminjam::all()->last();
         return $collection;
     }
     
-    public function collection_count() {
+    public function collection_count()
+    {
         $collection = DataPeminjam::all();
         $jumlah = $collection->count();
         return "jumlah peminjam ".$jumlah;
     }
     
-    public function collection_take() {
+    public function collection_take()
+    {
         $collection = DataPeminjam::all()->take(3);
         return $collection;
     }
 
-    public function collection_pluck() {
+    public function collection_pluck()
+    {
         $collection = DataPeminjam::all()->pluck("nama_peminjam");
         return $collection;
     }
 
-    public function collection_where() {
+    public function collection_where()
+    {
         $collection = DataPeminjam::all()->where("kode_peminjam", "12345");
         return $collection;
     }
 
-    public function collection_whereIn() {
+    public function collection_whereIn()
+    {
         $collection = DataPeminjam::all()->whereIn("kode_peminjam", ["12345", "123123"]);
         return $collection;
     }
 
-    public function collection_toarray() {
+    public function collection_toarray()
+    {
         $collection = DataPeminjam::select("kode_peminjam", "nama_peminjam")->take(3)->get();
         $koleksi = $collection->toArray();
         foreach ($koleksi as $peminjam) {
@@ -205,7 +217,8 @@ class DataPeminjamController extends Controller
         }
     }
 
-    public function collection_tojson() {
+    public function collection_tojson()
+    {
         $data = [
             ["kode_peminjam" => "12345", "nama_peminjam" => "chairul"],
             ["kode_peminjam" => "54321", "nama_peminjam" => "anaam"],

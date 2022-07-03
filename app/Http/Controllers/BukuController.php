@@ -6,16 +6,15 @@ use Illuminate\Http\Request;
 
 use App\Models\DataBuku;
 
-
 class BukuController extends Controller
 {
     public function index()
     {
-       $batas = 5;
-       $jumlah_buku = DataBuku::count();
-       $data_buku = DataBuku::orderBy('id', 'asc')->simplePaginate($batas);
-       $no = 0;
-       return view('buku.index', compact('data_buku', 'no', 'jumlah_buku'));
+        $batas = 5;
+        $jumlah_buku = DataBuku::count();
+        $data_buku = DataBuku::orderBy('id', 'asc')->simplePaginate($batas);
+        $no = 0;
+        return view('buku.index', compact('data_buku', 'no', 'jumlah_buku'));
     }
 
     public function create()
@@ -58,11 +57,11 @@ class BukuController extends Controller
         return redirect('buku');
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $buku = DataBuku::find($id);
         $buku->delete();
 
         return redirect('buku');
     }
-
 }

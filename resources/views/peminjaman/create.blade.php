@@ -3,9 +3,9 @@
     <div class="container">
         <h4>Tambah Transaksi Peminjaman</h4>
         <form method="POST" action="{{ route('peminjaman.store') }}">
-        @csrf
+            @csrf
             <div class="mb-3">
-                <label for="kode_transaksi" class="form-label" >Kode Peminjaman</label>
+                <label for="kode_transaksi" class="form-label">Kode Peminjaman</label>
                 <input type="text" class="form-control" id="kode_transaksi" name="kode_transaksi">
                 <input type="hidden" class="form-control" name="tgl_peminjaman" value="{{ date('Y-m-d') }}">
                 <input type="hidden" class="form-control" name="tgl_pengembalian" value="{{ date('Y-m-d', strtotime('+15 day', strtotime(date('Y-m-d')))) }}">
@@ -32,7 +32,7 @@
                     @endforeach
                 </select>
             </div>
-                <button type="submit" class="btn btn-primary">Simpan</button>
+            <button type="submit" class="btn btn-primary">Simpan</button>
         </form>
     </div>
 @endsection

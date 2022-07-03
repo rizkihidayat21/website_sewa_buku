@@ -2,10 +2,10 @@
 @section('content')
     <div class="container">
         <h4>Tambah Data Peminjam</h4>
-        <form method="POST" action="{{route('data_peminjam.update', $peminjam->id) }}" enctype="multipart/form-data">
-        @csrf
+        <form method="POST" action="{{ route('data_peminjam.update', $peminjam->id) }}" enctype="multipart/form-data">
+            @csrf
             <div class="mb-3">
-                <label for="kode_peminjam" class="form-label" >Kode Peminjam</label>
+                <label for="kode_peminjam" class="form-label">Kode Peminjam</label>
                 <input type="text" class="form-control" id="kode_peminjam" name="kode_peminjam" value="{{ $peminjam->kode_peminjam }}">
                 <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $peminjam->user_id }}">
             </div>
@@ -18,7 +18,7 @@
                 <select class="form-select text-secondary" aria-label="Default select example" name="id_jenis_kelamin" for="id_jenis_kelamin">
                     <option value="">Pilih Jenis Kelamin</option>
                     @foreach ($list_jenis_kelamin as $key => $value)
-                        <option value="{{ $key }}" {{$peminjam->id_jenis_kelamin == $key ? 'selected' : '' }}>
+                        <option value="{{ $key }}" {{ $peminjam->id_jenis_kelamin == $key ? 'selected' : '' }}>
                             {{ $value }}
                         </option>
                     @endforeach

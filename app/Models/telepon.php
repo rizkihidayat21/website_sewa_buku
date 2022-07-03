@@ -13,7 +13,8 @@ class telepon extends Model
     protected $primary = 'id_peminjam';
     protected $fillable = ['id_peminjam', 'nomor_telepon'];
 
-    public function peminjam(){
+    public function peminjam()
+    {
         return $this->belongsTo('App\Models\dataPeminjam', 'id');
     }
 }

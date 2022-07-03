@@ -10,18 +10,21 @@ use App\Models\DataBuku;
 
 class PeminjamanController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
     }
     
-    public function index() {
+    public function index()
+    {
         $data_peminjaman = Peminjaman::all()->sortBy('id');
         $jumlah_peminjaman = $data_peminjaman->count();
 
         return view('peminjaman.index', compact('data_peminjaman', 'jumlah_peminjaman'));
     }
 
-    public function create() {
+    public function create()
+    {
         $list_data_peminjam = DataPeminjam::pluck('nama_peminjam', 'id');
         $list_data_buku = DataBuku::pluck('judul_buku', 'id');
         return view('peminjaman.create', compact('list_data_peminjam', 'list_data_buku'));
@@ -40,13 +43,15 @@ class PeminjamanController extends Controller
         return redirect('peminjaman');
     }
 
-    public function detail_peminjam($id) {
+    public function detail_peminjam($id)
+    {
         $halaman = 'data_peminjams';
         $data_peminjam = DataPeminjam::findOrFail($id);
         return view('peminjaman.detail_peminjam', compact('halaman', 'data_peminjam'));
     }
 
-    public function detail_buku($id) {
+    public function detail_buku($id)
+    {
         $halaman = 'data_buku';
         $data_buku = DataBuku::findOrFail($id);
         return view('peminjaman.detail_buku', compact('halaman', 'data_buku'));

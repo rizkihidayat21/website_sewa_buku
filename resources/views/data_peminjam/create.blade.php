@@ -2,9 +2,9 @@
 @section('content')
     <div class="container">
         <h4>Tambah Data Peminjam</h4>
-        
-        @if(count($errors) > 0)
-            @foreach($errors->all() as $error)
+
+        @if (count($errors) > 0)
+            @foreach ($errors->all() as $error)
                 <div class="alert alert-danger d-flex align-items-center" role="alert">
                     <div>{{ $error }}</div>
                 </div>
@@ -12,9 +12,9 @@
         @endif
 
         <form method="POST" action="/data_peminjam/store" enctype="multipart/form-data">
-        @csrf
+            @csrf
             <div class="mb-3">
-                <label for="kode_peminjam" class="form-label" >Kode Peminjam</label>
+                <label for="kode_peminjam" class="form-label">Kode Peminjam</label>
                 <input type="text" class="form-control" id="kode_peminjam" name="kode_peminjam">
                 <input type="hidden" class="form-control" id="user_id" name="user_id" value="{{ $user_id }}">
             </div>

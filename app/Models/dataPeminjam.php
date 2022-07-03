@@ -11,11 +11,13 @@ class dataPeminjam extends Model
 
     protected $table = 'data_peminjams';
 
-    public function telepon() {
+    public function telepon()
+    {
         return $this->hasOne('App\Models\telepon', 'id_peminjam');
     }
 
-    public function jenis_kelamin() {
+    public function jenis_kelamin()
+    {
         return $this->belongsTo('App\Models\JenisKelamin', 'id_jenis_kelamin');
     }
 

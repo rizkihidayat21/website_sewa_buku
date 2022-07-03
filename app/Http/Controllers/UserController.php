@@ -14,18 +14,19 @@ use App\Models\DataPeminjam;
 
 class UserController extends Controller
 {
-    public function __construct() {
+    public function __construct()
+    {
         $this->middleware('auth');
         $this->middleware('admin');
     }
 
     public function index()
     {
-       $batas = 5;
-       $jumlah_user = User::count();
-       $user_list = User::orderBy('id', 'asc')->paginate($batas);
-       $no = 0;
-       return view('user.index', compact('user_list', 'no', 'jumlah_user'));
+        $batas = 5;
+        $jumlah_user = User::count();
+        $user_list = User::orderBy('id', 'asc')->paginate($batas);
+        $no = 0;
+        return view('user.index', compact('user_list', 'no', 'jumlah_user'));
     }
 
     public function create()
@@ -52,7 +53,7 @@ class UserController extends Controller
             $user_id = User::max('id');
             $name = $request->name;
             $list_jenis_kelamin = JenisKelamin::pluck('nama_jenis_kelamin', 'id_jenis_kelamin');
-            return view('data_peminjam/create', compact('name','user_id','list_jenis_kelamin'));
+            return view('data_peminjam/create', compact('name', 'user_id', 'list_jenis_kelamin'));
         } else {
             return redirect('user');
         }
@@ -88,7 +89,8 @@ class UserController extends Controller
         return redirect('user');
     }
 
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $user = User::find($id);
         $user->delete();
 
