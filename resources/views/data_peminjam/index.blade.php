@@ -5,6 +5,13 @@
 
         @include('_partial/flash_message')
 
+        <p align="left">
+            <a href="{{ route('data_peminjam.data_peminjam_pdf') }}" class="btn btn-primary">Download Data Peminjam</a>
+        </p>
+        <p align="left">
+            <a href="{{ route('data_peminjam.export_excel') }}" class="btn btn-primary">Export Data Peminjam</a>
+        </p>
+
         <form method="get" action="{{ route('data_peminjam.search') }}">
             @csrf
             <div class="row align-items-center mb-3">

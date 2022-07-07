@@ -31,6 +31,8 @@ Route::get('/data_peminjam/edit/{id}', 'App\Http\Controllers\DataPeminjamControl
 Route::post('/data_peminjam/update/{id}', 'App\Http\Controllers\DataPeminjamController@update')->name('data_peminjam.update');
 Route::post('/data_peminjam/delete/{id}', 'App\Http\Controllers\DataPeminjamController@destroy')->name('data_peminjam.destroy');
 
+Route::get('/data_peminjam/data_peminjam_pdf', 'App\Http\Controllers\DataPeminjamController@data_peminjam_pdf')->name('data_peminjam.data_peminjam_pdf');
+
 Route::get('buku', 'App\Http\Controllers\BukuController@index')->name('buku');
 Route::get('buku/create', 'App\Http\Controllers\BukuController@create')->name('buku.create');
 Route::post('buku', 'App\Http\Controllers\BukuController@store')->name('buku.store');
@@ -45,10 +47,12 @@ Route::get('/peminjaman/detail_peminjam/{id}', 'App\Http\Controllers\PeminjamanC
 Route::get('/peminjaman/detail_buku/{id}', 'App\Http\Controllers\PeminjamanController@detail_buku')->name('peminjaman.detail_buku');
 
 Route::get('user', 'App\Http\Controllers\UserController@index')->name('user');
-Route::get('user/create', 'App\Http\Controllers\UserController@create')->name('user.create');
+Route::get('user/create', 'App\Http\ControllerSs\UserController@create')->name('user.create');
 Route::post('user/store', 'App\Http\Controllers\UserController@store')->name('user.store');
 Route::get('user/edit/{id}', 'App\Http\Controllers\UserController@edit')->name('user.edit');
 Route::post('user/update/{id}', 'App\Http\Controllers\UserController@update')->name('user.update');
 Route::post('user/destroy/{id}', 'App\Http\Controllers\UserController@destroy')->name('user.destroy');
+
+route::get('export_excel', 'App\Http\Controllers\DataPeminjamController@export_excel')->name('data_peminjam.export_excel');
 
 require __DIR__.'/auth.php';

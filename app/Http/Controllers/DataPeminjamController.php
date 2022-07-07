@@ -7,6 +7,10 @@ use App\Models\dataPeminjam;
 use App\Models\telepon;
 use App\Models\JenisKelamin;
 use App\Models\User;
+use App\Exports\DataPeminjamExport;
+use Maatwebsite\Excel\Facades\Excel;
+
+use PDF;
 use Session;
 use Storage;
 
@@ -144,6 +148,18 @@ class DataPeminjamController extends Controller
         Session::flash('flash_message_hapus', 'Data peminjam berhasil dihapus');
         Session::flash('penting', true);
         return redirect('data_peminjam');
+    }
+
+    public function data_peminjam_pdf()
+    {
+        $data_peminjam = DataPeminjam::all();
+        $pdf = PDF::loadView('data_peminjam/data_peminjam_pdf', ['data_peminjam'=> $data_peminjam]);
+        return $pdf->download('laporan.pdf');
+    }
+
+    public function export_excel()
+    {
+        return Excel::download(new DataPeminjamExport, 'data_peminjam.xlsx');
     }
 
     public function search(Request $request)
