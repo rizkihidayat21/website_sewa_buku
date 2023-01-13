@@ -47,7 +47,7 @@ Route::get('/peminjaman/detail_peminjam/{id}', 'App\Http\Controllers\PeminjamanC
 Route::get('/peminjaman/detail_buku/{id}', 'App\Http\Controllers\PeminjamanController@detail_buku')->name('peminjaman.detail_buku');
 
 Route::get('user', 'App\Http\Controllers\UserController@index')->name('user');
-Route::get('user/create', 'App\Http\ControllerSs\UserController@create')->name('user.create');
+Route::get('user/create', 'App\Http\Controllers\UserController@create')->name('user.create');
 Route::post('user/store', 'App\Http\Controllers\UserController@store')->name('user.store');
 Route::get('user/edit/{id}', 'App\Http\Controllers\UserController@edit')->name('user.edit');
 Route::post('user/update/{id}', 'App\Http\Controllers\UserController@update')->name('user.update');
